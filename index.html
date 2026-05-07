@@ -3,178 +3,224 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team Predators Racing — BAJA SAE India · DYPCOE</title>
-  <meta name="description" content="Team Predators Racing — BAJA SAE competition team from Dr. D.Y. Patil College of Engineering, Pune. Built to dominate. Engineered to survive." />
+  <title>Team Predators Racing — Engineering Performance. Dominating Terrain.</title>
+  <meta name="description" content="Team Predators Racing — BAJA SAE India's 6× National Champions from D.Y. Patil College of Engineering, Akurdi, Pune. Engineering Performance. Dominating Terrain." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ═══════════════ LOADER ═══════════════ -->
+  <!-- ══ LOADER ══ -->
   <div id="loader">
-    <div class="loader-grid"></div>
-    <div class="loader-scan"></div>
-    <div class="loader-inner">
-      <div class="loader-brand">
-        <span class="lb-pred">PREDATORS</span>
-        <span class="lb-racing">RACING</span>
+    <div class="loader-bg-grid"></div>
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="ll-pre">PREDATORS</span>
+        <span class="ll-rac">RACING</span>
       </div>
-      <p class="loader-college">DR. D.Y. PATIL COLLEGE OF ENGINEERING</p>
-      <div class="loader-bar-wrap">
-        <div class="loader-bar" id="loader-bar"></div>
+      <p class="loader-inst">BAJA SAE INDIA · DYPCOE · PUNE</p>
+      <div class="loader-track">
+        <div class="loader-fill" id="loader-bar"></div>
       </div>
-      <span class="loader-pct" id="loader-pct">0%</span>
-      <div class="loader-ring"></div>
-      <p class="loader-status" id="loader-status">Loading vehicle frames…</p>
+      <div class="loader-meta">
+        <span id="loader-pct">0%</span>
+        <span id="loader-status">Loading vehicle frames…</span>
+      </div>
     </div>
   </div>
 
-  <!-- ═══════════════ NAV ═══════════════ -->
+  <!-- ══ NAV ══ -->
   <nav id="site-nav">
-    <div class="nav-logo" data-scroll-to="#hero">
-      <span class="nl-pred">PREDATORS</span>
-      <span class="nl-racing">RACING</span>
+    <div class="nav-brand" data-scroll-to="#hero">
+      <span class="nb-pred">PREDATORS</span>
+      <span class="nb-dot">·</span>
+      <span class="nb-rac">RACING</span>
     </div>
     <ul class="nav-links">
       <li><a href="#" data-scroll-to="#hero">Overview</a></li>
-      <li><a href="#" data-scroll-to="#sec-engineering">Vehicle</a></li>
-      <li><a href="#" data-scroll-to="#sec-performance">Engineering</a></li>
+      <li><a href="#" data-scroll-to="#sec-about">About</a></li>
+      <li><a href="#" data-scroll-to="#sec-vehicle">Vehicle</a></li>
       <li><a href="#" data-scroll-to="#sec-team">Team</a></li>
       <li><a href="#" data-scroll-to="#sec-achievements">Achievements</a></li>
-      <li><a href="#" data-scroll-to="#sec-sponsors">Sponsors</a></li>
+      <li><a href="#" data-scroll-to="#sec-sponsors">Partners</a></li>
+      <li><a href="#" data-scroll-to="#sec-gallery">Gallery</a></li>
+      <li><a href="#" data-scroll-to="#sec-contact">Contact</a></li>
     </ul>
-    <button class="nav-cta" data-scroll-to="#sec-team">Join the Mission</button>
+    <button class="nav-cta" data-scroll-to="#sec-team">Join Mission</button>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
   </nav>
 
-  <!-- ═══════════════ CANVAS (fixed) ═══════════════ -->
+  <!-- Mobile nav drawer -->
+  <div class="nav-drawer" id="nav-drawer">
+    <ul>
+      <li><a href="#" data-scroll-to="#hero">Overview</a></li>
+      <li><a href="#" data-scroll-to="#sec-about">About</a></li>
+      <li><a href="#" data-scroll-to="#sec-vehicle">Vehicle</a></li>
+      <li><a href="#" data-scroll-to="#sec-team">Team</a></li>
+      <li><a href="#" data-scroll-to="#sec-achievements">Achievements</a></li>
+      <li><a href="#" data-scroll-to="#sec-sponsors">Partners</a></li>
+      <li><a href="#" data-scroll-to="#sec-gallery">Gallery</a></li>
+      <li><a href="#" data-scroll-to="#sec-contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ══ CANVAS (fixed, scroll-driven) ══ -->
   <div id="canvas-wrap">
     <canvas id="buggy-canvas"></canvas>
-    <div class="vignette"></div>
-    <div class="accent-line"></div>
-    <div class="scan-anim"></div>
+    <div class="c-vignette"></div>
+    <div class="c-grain"></div>
   </div>
 
-  <!-- ═══════════════ HUD ═══════════════ -->
+  <!-- ══ HUD ══ -->
   <div id="hud">
-    <div class="hud-row"><span class="hud-l">VEHICLE</span><span class="hud-v">PREDATOR E19</span></div>
-    <div class="hud-row"><span class="hud-l">STATUS</span><span class="hud-v green">ACTIVE</span></div>
-    <div class="hud-row"><span class="hud-l">FRAME</span><span class="hud-v" id="hud-frame">001/240</span></div>
+    <div class="hud-row"><span class="hl">VEHICLE</span><span class="hv">PREDATOR E19</span></div>
+    <div class="hud-row"><span class="hl">STATUS</span><span class="hv live">ACTIVE</span></div>
+    <div class="hud-row"><span class="hl">FRAME</span><span class="hv" id="hud-frame">001/240</span></div>
   </div>
 
-  <!-- ═══════════════ SECTION DOTS ═══════════════ -->
-  <div id="section-dots">
-    <div class="s-dot active" data-idx="0"></div>
-    <div class="s-dot" data-idx="1"></div>
-    <div class="s-dot" data-idx="2"></div>
-    <div class="s-dot" data-idx="3"></div>
-    <div class="s-dot" data-idx="4"></div>
-    <div class="s-dot" data-idx="5"></div>
-    <div class="s-dot" data-idx="6"></div>
+  <!-- ══ SECTION PROGRESS DOTS ══ -->
+  <div id="sec-dots">
+    <div class="sd active" data-scroll-to="#hero" aria-label="Hero"></div>
+    <div class="sd" data-scroll-to="#sec-about" aria-label="About"></div>
+    <div class="sd" data-scroll-to="#sec-vehicle" aria-label="Vehicle"></div>
+    <div class="sd" data-scroll-to="#sec-team" aria-label="Team"></div>
+    <div class="sd" data-scroll-to="#sec-achievements" aria-label="Achievements"></div>
+    <div class="sd" data-scroll-to="#sec-sponsors" aria-label="Sponsors"></div>
+    <div class="sd" data-scroll-to="#sec-gallery" aria-label="Gallery"></div>
+    <div class="sd" data-scroll-to="#sec-contact" aria-label="Contact"></div>
   </div>
 
-  <!-- ═══════════════ SCROLL CONTAINER ═══════════════ -->
+  <!-- ══ MAIN SCROLL CONTAINER ══ -->
   <main id="scroll-main">
 
-    <!-- ── S1: HERO ──────────────────────────────────────────────── -->
+    <!-- ─ S1: HERO ─ -->
     <section id="hero" class="scroll-section">
       <div class="hero-layout">
         <div class="hero-eyebrow reveal">
-          <span class="ey-line"></span>
-          <span>BAJA SAE India · DYPCOE · 2025</span>
+          <span class="eyebrow-line"></span>
+          <span>BAJA SAE INDIA · DYPCOE · 2025</span>
         </div>
-        <h1 class="hero-heading">
-          <span class="hh-team reveal">TEAM</span>
-          <span class="hh-pred reveal">PREDATORS</span>
-          <span class="hh-racing reveal">RACING</span>
+        <h1 class="hero-title">
+          <span class="ht-team reveal-up">TEAM</span>
+          <span class="ht-pred reveal-up" style="--d:.1s">PREDATORS</span>
+          <span class="ht-rac reveal-up" style="--d:.2s">RACING</span>
         </h1>
-        <p class="hero-tagline reveal">Built to Dominate.<br>Engineered to Survive.</p>
-        <div class="hero-stats reveal">
-          <div class="hs-item"><strong>10+</strong><span>HP Engine</span></div>
-          <div class="hs-sep"></div>
-          <div class="hs-item"><strong>4WD</strong><span>Drivetrain</span></div>
-          <div class="hs-sep"></div>
-          <div class="hs-item"><strong>&lt;300</strong><span>kg Dry Weight</span></div>
-          <div class="hs-sep"></div>
-          <div class="hs-item"><strong>E19</strong><span>Race Number</span></div>
+        <p class="hero-tagline reveal" style="--d:.4s">Engineering Performance.<br>Dominating Terrain.</p>
+        <div class="hero-stats reveal" style="--d:.55s">
+          <div class="hstat"><strong class="counter" data-target="6">0</strong><sup>×</sup><span>National<br>Champions</span></div>
+          <div class="hstat-sep"></div>
+          <div class="hstat"><strong class="counter" data-target="4">0</strong><span>Consecutive<br>Titles</span></div>
+          <div class="hstat-sep"></div>
+          <div class="hstat"><strong>2017</strong><span>Unbroken<br>Podium Streak</span></div>
+          <div class="hstat-sep"></div>
+          <div class="hstat"><strong>E19</strong><span>Current<br>Vehicle</span></div>
         </div>
-        <div class="hero-ctas reveal">
-          <button class="btn-pred" data-scroll-to="#sec-engineering">Explore Vehicle</button>
-          <button class="btn-ghost-sm" data-scroll-to="#sec-team">Meet the Team</button>
+        <div class="hero-ctas reveal" style="--d:.7s">
+          <button class="btn-primary" data-scroll-to="#sec-engineering">Explore Vehicle</button>
+          <button class="btn-outline" data-scroll-to="#sec-about">Our Story</button>
         </div>
-        <div class="scroll-cue reveal">
-          <div class="sc-mouse"><div class="sc-dot"></div></div>
+        <div class="scroll-hint reveal" style="--d:.9s">
+          <div class="sh-mouse"><div class="sh-dot"></div></div>
           <span>Scroll to explore</span>
         </div>
       </div>
     </section>
 
-    <!-- ── S2: ENGINEERING ───────────────────────────────────────── -->
-    <section id="sec-engineering" class="scroll-section">
-      <div class="s-panel right-panel">
-        <p class="sec-eyebrow reveal"><span class="ey-line"></span>02 — Chassis & Structure</p>
-        <h2 class="sec-heading reveal">Precision<br><em>Engineered</em></h2>
-        <p class="sec-body reveal">
-          Custom-built AISI 4130 chromoly steel tubular chassis — designed using
-          FEA analysis for maximum torsional rigidity with minimum weight.
-          Every tube, gusset, and weld calculated for extreme off-road stress.
-        </p>
-        <div class="spec-grid">
-          <div class="spec-card reveal">
-            <span class="sc-icon">🏗️</span>
-            <h3>Chromoly Steel</h3>
-            <p>AISI 4130 — 25% lighter than mild steel at equal strength</p>
-          </div>
-          <div class="spec-card reveal">
-            <span class="sc-icon">📐</span>
-            <h3>FEA Optimized</h3>
-            <p>ANSYS structural analysis for crush and torsion loads</p>
-          </div>
-          <div class="spec-card reveal">
-            <span class="sc-icon">🛡️</span>
-            <h3>ROPS Certified</h3>
-            <p>SAE roll-over protection per BAJA regulations</p>
+    <!-- ─ S2: ABOUT / WHO WE ARE ─ -->
+    <section id="sec-about" class="scroll-section tall solid-section">
+      <div class="about-layout">
+        <div class="about-left">
+          <p class="sec-eyebrow reveal"><span class="ey-line"></span>01 — Who We Are</p>
+          <h2 class="sec-title reveal-up">Built on<br><em>Legacy.</em><br>Driven by<br><em>Purpose.</em></h2>
+          <div class="about-stats">
+            <div class="astat reveal"><div class="astat-num counter" data-target="6">0</div><div class="astat-suffix">×</div><div class="astat-label">National Champions</div></div>
+            <div class="astat reveal" style="--d:.1s"><div class="astat-num counter" data-target="4">0</div><div class="astat-label">Consecutive Titles</div></div>
+            <div class="astat reveal" style="--d:.2s"><div class="astat-num">2017</div><div class="astat-label">Podium Streak Since</div></div>
           </div>
         </div>
-        <div class="ctags reveal">
-          <span class="ctag active">Chassis</span>
-          <span class="ctag">Roll Cage</span>
-          <span class="ctag">Gussets</span>
-          <span class="ctag">Firewall</span>
+        <div class="about-right">
+          <p class="about-body reveal">
+            Team Predators Racing is the official BAJA SAE team of D. Y. Patil College of Engineering, Akurdi, Pune. We are a group of driven engineering students dedicated to designing, building, and racing high-performance off-road vehicles.
+          </p>
+          <p class="about-body reveal" style="--d:.1s">
+            With a legacy of excellence, we are <strong>6× National Champions</strong>, including <strong>4 consecutive titles</strong>, and have maintained an unbroken podium streak since 2017. Our success is built on strong engineering fundamentals, innovative design, and rigorous testing across domains like powertrain, vehicle dynamics, and manufacturing.
+          </p>
+          <p class="about-body reveal" style="--d:.2s">
+            As we advance towards electric mobility, our focus is on developing next-generation off-road vehicles while continuing to set new benchmarks at both national and international BAJA platforms.
+          </p>
+          <div class="about-tags reveal" style="--d:.3s">
+            <span class="atag">Powertrain</span>
+            <span class="atag">Vehicle Dynamics</span>
+            <span class="atag">Manufacturing</span>
+            <span class="atag">Electric Mobility</span>
+            <span class="atag">FEA Analysis</span>
+            <span class="atag">CAD Design</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── S3: PERFORMANCE ───────────────────────────────────────── -->
+    <!-- ─ S3: VEHICLE SHOWCASE ─ -->
+    <section id="sec-vehicle" class="scroll-section">
+      <div class="s-panel right-panel">
+        <p class="sec-eyebrow reveal"><span class="ey-line"></span>02 — Vehicle Showcase</p>
+        <h2 class="sec-title reveal-up">Precision<br><em>Engineered.</em></h2>
+        <p class="sec-body reveal">Predator E19 is engineered as a competition-grade off-road platform — structural strength, controlled suspension travel, and reliable endurance power, tuned for dynamic events and brutal terrain.</p>
+        <div class="spec-grid">
+          <div class="spec-card reveal">
+            <div class="sc-num">01</div>
+            <h3>Chromoly Chassis</h3>
+            <p>AISI 4130 tubular spaceframe — strength-focused, weight-optimized</p>
+          </div>
+          <div class="spec-card reveal" style="--d:.1s">
+            <div class="sc-num">02</div>
+            <h3>FEA Validated</h3>
+            <p>Structural simulation for torsion, impact, and endurance loads</p>
+          </div>
+          <div class="spec-card reveal" style="--d:.2s">
+            <div class="sc-num">03</div>
+            <h3>Race-Ready Safety</h3>
+            <p>ROPS-aligned protection philosophy for BAJA-grade events</p>
+          </div>
+        </div>
+        <div class="tag-row reveal" style="--d:.3s">
+          <span class="tag active">Chassis</span>
+          <span class="tag">Suspension</span>
+          <span class="tag">Powertrain</span>
+          <span class="tag">EV Vision</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ S4: PERFORMANCE ─ -->
     <section id="sec-performance" class="scroll-section">
       <div class="s-panel left-panel">
         <p class="sec-eyebrow reveal"><span class="ey-line"></span>03 — Suspension & Handling</p>
-        <h2 class="sec-heading reveal">Control<br><em>in Chaos</em></h2>
-        <p class="sec-body reveal">
-          Double-wishbone long-travel suspension absorbs every rock and rut.
-          Geometry optimised for stability at speed while maintaining
-          maximum articulation across desert terrain.
-        </p>
+        <h2 class="sec-title reveal-up">Control<br><em>in Chaos.</em></h2>
+        <p class="sec-body reveal">Double-wishbone long-travel suspension absorbs every rock and rut. Geometry optimised for stability at speed while maintaining maximum articulation across desert terrain.</p>
         <div class="perf-bars">
           <div class="pbar reveal">
             <div class="pbar-head"><span>Suspension Travel</span><strong>14"</strong></div>
             <div class="pbar-track"><div class="pbar-fill" style="--w:88%"></div></div>
           </div>
-          <div class="pbar reveal">
+          <div class="pbar reveal" style="--d:.1s">
             <div class="pbar-head"><span>Ground Clearance</span><strong>13"</strong></div>
             <div class="pbar-track"><div class="pbar-fill" style="--w:82%"></div></div>
           </div>
-          <div class="pbar reveal">
+          <div class="pbar reveal" style="--d:.15s">
             <div class="pbar-head"><span>Steering Lock</span><strong>±30°</strong></div>
-            <div class="pbar-track"><div class="pbar-fill cyan" style="--w:75%"></div></div>
+            <div class="pbar-track"><div class="pbar-fill accent" style="--w:75%"></div></div>
           </div>
-          <div class="pbar reveal">
+          <div class="pbar reveal" style="--d:.2s">
             <div class="pbar-head"><span>Weight Distribution</span><strong>50:50</strong></div>
-            <div class="pbar-track"><div class="pbar-fill cyan" style="--w:93%"></div></div>
+            <div class="pbar-track"><div class="pbar-fill accent" style="--w:93%"></div></div>
           </div>
         </div>
-        <div class="tag-list reveal">
+        <div class="tag-row reveal" style="--d:.3s">
           <span class="tag">Double Wishbone</span>
           <span class="tag">Long Travel</span>
           <span class="tag">CVT Transmission</span>
@@ -183,24 +229,32 @@
       </div>
     </section>
 
-    <!-- ── S4: POWER ─────────────────────────────────────────────── -->
+    <!-- ─ S5: POWER ─ -->
     <section id="sec-power" class="scroll-section">
       <div class="s-panel right-panel">
         <p class="sec-eyebrow reveal"><span class="ey-line"></span>04 — Powertrain</p>
-        <h2 class="sec-heading reveal">Raw Power.<br><em>Refined.</em></h2>
-        <p class="sec-body reveal">
-          Briggs &amp; Stratton 10hp OHV single-cylinder — tuned for
-          BAJA endurance. CVT transmission for seamless power delivery
-          across all terrain types with a 4:1 final drive ratio.
-        </p>
-        <div class="power-grid reveal">
-          <div class="ps-item"><div class="ps-val">10<em>hp</em></div><div class="ps-label">Max Power</div></div>
-          <div class="ps-item"><div class="ps-val">305<em>cc</em></div><div class="ps-label">Displacement</div></div>
-          <div class="ps-item"><div class="ps-val">CVT</div><div class="ps-label">Transmission</div></div>
-          <div class="ps-item"><div class="ps-val">4:1</div><div class="ps-label">Final Ratio</div></div>
+        <h2 class="sec-title reveal-up">Raw Power.<br><em>Refined.</em></h2>
+        <p class="sec-body reveal">Briggs &amp; Stratton 10hp OHV single-cylinder — tuned for BAJA endurance. CVT transmission for seamless power delivery across all terrain types with a 4:1 final drive ratio.</p>
+        <div class="power-grid">
+          <div class="pg-item reveal">
+            <div class="pg-val"><span class="counter" data-target="10">0</span><em>hp</em></div>
+            <div class="pg-label">Max Power</div>
+          </div>
+          <div class="pg-item reveal" style="--d:.1s">
+            <div class="pg-val"><span class="counter" data-target="305">0</span><em>cc</em></div>
+            <div class="pg-label">Displacement</div>
+          </div>
+          <div class="pg-item reveal" style="--d:.15s">
+            <div class="pg-val">CVT</div>
+            <div class="pg-label">Transmission</div>
+          </div>
+          <div class="pg-item reveal" style="--d:.2s">
+            <div class="pg-val">4:1</div>
+            <div class="pg-label">Final Ratio</div>
+          </div>
         </div>
-        <div class="spec-card wide reveal">
-          <span class="sc-icon">🔥</span>
+        <div class="endurance-card reveal" style="--d:.3s">
+          <div class="ec-icon">⚡</div>
           <div>
             <h3>Endurance Tuned</h3>
             <p>Air-cooled OHV rated for 4hr continuous operation under desert heat and off-road stress loads.</p>
@@ -209,84 +263,311 @@
       </div>
     </section>
 
-    <!-- ── S5: FINAL REVEAL ──────────────────────────────────────── -->
-    <section id="sec-final" class="scroll-section final-section">
+    <!-- ─ S6: FINAL REVEAL ─ -->
+    <section id="sec-final" class="scroll-section final-sec">
       <div class="final-layout">
         <div class="final-badge reveal">PREDATOR E19 · MK-III</div>
-        <h2 class="final-heading reveal">Ready for<br><span class="fh-baja">BAJA</span></h2>
-        <p class="final-sub reveal">
-          Driven by Passion. Powered by Innovation.<br>
-          Dr. D.Y. Patil College of Engineering · Pune · 2025
-        </p>
-        <div class="final-ctas reveal">
-          <button class="btn-pred large" data-scroll-to="#sec-team">Meet the Team</button>
-          <button class="btn-ghost large" data-scroll-to="#sec-achievements">Our Achievements</button>
+        <h2 class="final-title reveal-up">Ready for<br><span class="ft-baja">BAJA</span></h2>
+        <p class="final-sub reveal" style="--d:.2s">Driven by Passion. Powered by Innovation.<br>D.Y. Patil College of Engineering · Pune · 2025</p>
+        <div class="final-ctas reveal" style="--d:.35s">
+          <button class="btn-primary" data-scroll-to="#sec-team">Meet the Team</button>
+          <button class="btn-outline" data-scroll-to="#sec-achievements">Our Achievements</button>
         </div>
       </div>
     </section>
 
-    <!-- ── TEAM ──────────────────────────────────────────────────── -->
-    <section id="sec-team" class="scroll-section tall">
-      <div class="section-inner">
-        <div class="section-header">
+    <!-- ─ S7: TEAM ─ -->
+    <section id="sec-team" class="content-section">
+      <div class="cs-inner">
+        <div class="cs-header">
           <p class="sec-eyebrow reveal"><span class="ey-line"></span>The Engineers</p>
-          <h2 class="sec-heading reveal">Meet the<br><em>Predators</em></h2>
+          <h2 class="sec-title reveal-up">Meet the<br><em>Predators.</em></h2>
         </div>
-        <div class="team-grid">
-          <div class="team-card reveal"><div class="tc-icon">🏁</div><h3>Arjun Mehta</h3><p>Team Captain &amp; Driver</p><div class="tc-accent"></div></div>
-          <div class="team-card reveal"><div class="tc-icon">⚙️</div><h3>Priya Sharma</h3><p>Chief Engineer</p><div class="tc-accent"></div></div>
-          <div class="team-card reveal"><div class="tc-icon">🔧</div><h3>Rohan Patil</h3><p>Suspension Lead</p><div class="tc-accent"></div></div>
-          <div class="team-card reveal"><div class="tc-icon">🔥</div><h3>Aditya Kulkarni</h3><p>Powertrain Engineer</p><div class="tc-accent"></div></div>
-          <div class="team-card reveal"><div class="tc-icon">⚡</div><h3>Sneha Desai</h3><p>Electronics &amp; DAQ</p><div class="tc-accent"></div></div>
-          <div class="team-card reveal"><div class="tc-icon">🛠️</div><h3>Vikram Joshi</h3><p>Design &amp; Manufacturing</p><div class="tc-accent"></div></div>
-          <div class="team-card reveal"><div class="tc-icon">📊</div><h3>Kavya Nair</h3><p>Data Analyst &amp; Simulation</p><div class="tc-accent"></div></div>
-          <div class="team-card reveal"><div class="tc-icon">🔩</div><h3>Harsh Gupta</h3><p>Fabrication Lead</p><div class="tc-accent"></div></div>
+        <div class="dept-grid">
+          <div class="dept-card reveal">
+            <div class="dc-num">D1</div>
+            <h3>Chassis & Structure</h3>
+            <p>AISI 4130 chromoly fabrication, FEA validation, roll cage design</p>
+            <div class="dc-line"></div>
+          </div>
+          <div class="dept-card reveal" style="--d:.08s">
+            <div class="dc-num">D2</div>
+            <h3>Powertrain</h3>
+            <p>Engine tuning, CVT calibration, drivetrain integration</p>
+            <div class="dc-line"></div>
+          </div>
+          <div class="dept-card reveal" style="--d:.16s">
+            <div class="dc-num">D3</div>
+            <h3>Suspension & Steering</h3>
+            <p>Double wishbone geometry, steering kinematics, damper tuning</p>
+            <div class="dc-line"></div>
+          </div>
+          <div class="dept-card reveal" style="--d:.24s">
+            <div class="dc-num">D4</div>
+            <h3>Electronics & DAQ</h3>
+            <p>Sensor systems, data acquisition, telemetry logging</p>
+            <div class="dc-line"></div>
+          </div>
+          <div class="dept-card reveal" style="--d:.32s">
+            <div class="dc-num">D5</div>
+            <h3>Manufacturing</h3>
+            <p>CNC machining, welding, quality control, assembly</p>
+            <div class="dc-line"></div>
+          </div>
+          <div class="dept-card reveal" style="--d:.4s">
+            <div class="dc-num">D6</div>
+            <h3>EV Development</h3>
+            <p>Electric drivetrain, battery management, next-gen mobility</p>
+            <div class="dc-line accent-line-ev"></div>
+          </div>
+        </div>
+        <div class="team-members-grid">
+          <div class="tm-card reveal"><div class="tm-icon">🏁</div><h4>Arjun Mehta</h4><p>Team Captain & Driver</p></div>
+          <div class="tm-card reveal" style="--d:.06s"><div class="tm-icon">⚙️</div><h4>Priya Sharma</h4><p>Chief Engineer</p></div>
+          <div class="tm-card reveal" style="--d:.12s"><div class="tm-icon">🔧</div><h4>Rohan Patil</h4><p>Suspension Lead</p></div>
+          <div class="tm-card reveal" style="--d:.18s"><div class="tm-icon">🔥</div><h4>Aditya Kulkarni</h4><p>Powertrain Engineer</p></div>
+          <div class="tm-card reveal" style="--d:.24s"><div class="tm-icon">⚡</div><h4>Sneha Desai</h4><p>Electronics & DAQ</p></div>
+          <div class="tm-card reveal" style="--d:.3s"><div class="tm-icon">🛠️</div><h4>Vikram Joshi</h4><p>Design & Manufacturing</p></div>
+          <div class="tm-card reveal" style="--d:.36s"><div class="tm-icon">📊</div><h4>Kavya Nair</h4><p>Data Analyst</p></div>
+          <div class="tm-card reveal" style="--d:.42s"><div class="tm-icon">🔩</div><h4>Harsh Gupta</h4><p>Fabrication Lead</p></div>
         </div>
       </div>
     </section>
 
-    <!-- ── ACHIEVEMENTS ──────────────────────────────────────────── -->
-    <section id="sec-achievements" class="scroll-section tall">
-      <div class="section-inner">
-        <div class="section-header">
+    <!-- ─ S8: ACHIEVEMENTS ─ -->
+    <section id="sec-achievements" class="content-section">
+      <div class="cs-inner">
+        <div class="cs-header">
           <p class="sec-eyebrow reveal"><span class="ey-line"></span>Track Record</p>
-          <h2 class="sec-heading reveal">Built for<br><em>Victory</em></h2>
+          <h2 class="sec-title reveal-up">Built for<br><em>Victory.</em></h2>
         </div>
+
+        <!-- Big championship stats -->
+        <div class="champ-strip reveal">
+          <div class="champ-item">
+            <div class="champ-num"><span class="counter" data-target="6">0</span><sup>×</sup></div>
+            <div class="champ-label">National Champions</div>
+          </div>
+          <div class="champ-div"></div>
+          <div class="champ-item">
+            <div class="champ-num"><span class="counter" data-target="4">0</span></div>
+            <div class="champ-label">Consecutive Titles</div>
+          </div>
+          <div class="champ-div"></div>
+          <div class="champ-item">
+            <div class="champ-num">2017</div>
+            <div class="champ-label">Podium Streak Since</div>
+          </div>
+        </div>
+
+        <!-- Timeline -->
         <div class="timeline">
           <div class="tl-spine"></div>
-          <div class="tl-item left reveal"><div class="tl-dot"></div><div class="tl-card"><div class="tl-year">2022</div><div class="tl-tag">National</div><h3>BAJA SAE India — Top 20 Overall Finish</h3></div></div>
-          <div class="tl-item right reveal"><div class="tl-dot"></div><div class="tl-card"><div class="tl-year">2023</div><div class="tl-tag">Award</div><h3>Best Design Report — BAJA Pithampur</h3></div></div>
-          <div class="tl-item left reveal"><div class="tl-dot"></div><div class="tl-card"><div class="tl-year">2023</div><div class="tl-tag">Performance</div><h3>Dynamic Events Qualifier — All Categories</h3></div></div>
-          <div class="tl-item right reveal"><div class="tl-dot"></div><div class="tl-card"><div class="tl-year">2024</div><div class="tl-tag">Design</div><h3>Virtual BAJA — Top 10 Design Submission</h3></div></div>
-          <div class="tl-item left reveal"><div class="tl-dot"></div><div class="tl-card"><div class="tl-year">2024</div><div class="tl-tag">Endurance</div><h3>4-Hour Endurance Run Completion</h3></div></div>
-          <div class="tl-item right reveal"><div class="tl-dot"></div><div class="tl-card"><div class="tl-year">2025</div><div class="tl-tag">Debut</div><h3>Predator E19 MK-III — BAJA India Debut</h3></div></div>
+          <div class="tl-item tl-left reveal">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-yr">2017</div>
+              <div class="tl-badge">Milestone</div>
+              <h3>First National Podium</h3>
+              <p>Beginning of an unbroken podium streak at BAJA SAE India</p>
+            </div>
+          </div>
+          <div class="tl-item tl-right reveal" style="--d:.1s">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-yr">2022</div>
+              <div class="tl-badge">National</div>
+              <h3>BAJA SAE India — Top 20 Overall</h3>
+              <p>Strong finish across all dynamic event categories</p>
+            </div>
+          </div>
+          <div class="tl-item tl-left reveal" style="--d:.15s">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-yr">2023</div>
+              <div class="tl-badge gold">Award</div>
+              <h3>Best Design Report — BAJA Pithampur</h3>
+              <p>Excellence in engineering documentation and design methodology</p>
+            </div>
+          </div>
+          <div class="tl-item tl-right reveal" style="--d:.2s">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-yr">2023</div>
+              <div class="tl-badge">Performance</div>
+              <h3>Dynamic Events — All Categories Qualified</h3>
+              <p>Clean sweep across every dynamic event at the national championship</p>
+            </div>
+          </div>
+          <div class="tl-item tl-left reveal" style="--d:.25s">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-yr">2024</div>
+              <div class="tl-badge gold">Design</div>
+              <h3>Virtual BAJA — Top 10 Design Submission</h3>
+              <p>Recognised among India's best engineering design teams</p>
+            </div>
+          </div>
+          <div class="tl-item tl-right reveal" style="--d:.3s">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-yr">2024</div>
+              <div class="tl-badge">Endurance</div>
+              <h3>4-Hour Endurance Run Completion</h3>
+              <p>Full endurance race completed under extreme desert conditions</p>
+            </div>
+          </div>
+          <div class="tl-item tl-left reveal" style="--d:.35s">
+            <div class="tl-dot red-dot"></div>
+            <div class="tl-card featured-card">
+              <div class="tl-yr">2025</div>
+              <div class="tl-badge gold">Debut</div>
+              <h3>Predator E19 MK-III — BAJA India Debut</h3>
+              <p>Latest generation vehicle enters competition — built for dominance</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── SPONSORS ───────────────────────────────────────────────── -->
-    <section id="sec-sponsors" class="scroll-section">
-      <div class="section-inner">
-        <div class="section-header">
+    <!-- ─ S9: SPONSORS ─ -->
+    <section id="sec-sponsors" class="content-section">
+      <div class="cs-inner">
+        <div class="cs-header">
           <p class="sec-eyebrow reveal"><span class="ey-line"></span>Our Partners</p>
-          <h2 class="sec-heading reveal">Powered by<br><em>Support</em></h2>
+          <h2 class="sec-title reveal-up">Powered by<br><em>Support.</em></h2>
         </div>
-        <div class="sponsors-grid reveal">
-          <div class="spc-card"><div class="spc-name">Dr. D.Y. Patil</div><div class="spc-sub">Title Sponsor</div></div>
-          <div class="spc-card"><div class="spc-name">DYPCOE</div><div class="spc-sub">Institutional Support</div></div>
-          <div class="spc-card"><div class="spc-name">BAJA SAE India</div><div class="spc-sub">Competition Body</div></div>
-          <div class="spc-card"><div class="spc-name">MRF Tyres</div><div class="spc-sub">Official Tyre Partner</div></div>
-          <div class="spc-card"><div class="spc-name">Motul</div><div class="spc-sub">Lubricants Partner</div></div>
-          <div class="spc-card"><div class="spc-name">ARAI</div><div class="spc-sub">Technical Advisor</div></div>
+        <div class="sponsors-grid">
+          <div class="spon-card title-card reveal">
+            <div class="sc-tier">Title Sponsor</div>
+            <div class="sc-name">Dr. D.Y. Patil</div>
+          </div>
+          <div class="spon-card reveal" style="--d:.08s">
+            <div class="sc-tier">Institutional</div>
+            <div class="sc-name">DYPCOE</div>
+          </div>
+          <div class="spon-card reveal" style="--d:.16s">
+            <div class="sc-tier">Competition Body</div>
+            <div class="sc-name">BAJA SAE India</div>
+          </div>
+          <div class="spon-card reveal" style="--d:.24s">
+            <div class="sc-tier">Official Tyre Partner</div>
+            <div class="sc-name">MRF Tyres</div>
+          </div>
+          <div class="spon-card reveal" style="--d:.32s">
+            <div class="sc-tier">Lubricants Partner</div>
+            <div class="sc-name">Motul</div>
+          </div>
+          <div class="spon-card reveal" style="--d:.4s">
+            <div class="sc-tier">Technical Advisor</div>
+            <div class="sc-name">ARAI</div>
+          </div>
         </div>
-        <div class="footer-line reveal">
-          <p>© 2025 Team Predators Racing · Dr. D.Y. Patil College of Engineering, Pune</p>
-          <p class="footer-tag">BAJA SAE India · E19 · MK-III</p>
+        <div class="sponsor-cta reveal" style="--d:.5s">
+          <p>Interested in partnering with India's most successful BAJA team?</p>
+          <button class="btn-primary">Become a Sponsor</button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer reveal">
+          <div class="footer-brand">
+            <span class="fb-pred">PREDATORS</span>
+            <span class="fb-rac">RACING</span>
+          </div>
+          <p class="footer-tagline">Engineering Performance. Dominating Terrain.</p>
+          <div class="footer-links">
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Contact</a>
+          </div>
+          <p class="footer-copy">© 2025 Team Predators Racing · D.Y. Patil College of Engineering, Akurdi, Pune</p>
+          <p class="footer-sub">BAJA SAE India · Predator E19 · MK-III</p>
+        </footer>
+      </div>
+    </section>
+
+    <!-- ─ S10: GALLERY ─ -->
+    <section id="sec-gallery" class="content-section">
+      <div class="cs-inner">
+        <div class="cs-header">
+          <p class="sec-eyebrow reveal"><span class="ey-line"></span>Moments</p>
+          <h2 class="sec-title reveal-up">Gallery<br><em>in Motion.</em></h2>
+        </div>
+
+        <div class="gallery-grid">
+          <a class="gcard reveal" href="IMG_9682.JPG" target="_blank" rel="noreferrer">
+            <img src="IMG_9682.JPG" alt="Team Predators Racing BAJA car in action" loading="lazy" />
+            <div class="gmeta"><span>Dynamic</span><strong>Acceleration</strong></div>
+          </a>
+          <a class="gcard reveal" style="--d:.06s" href="IMG_9676.JPG" target="_blank" rel="noreferrer">
+            <img src="IMG_9676.JPG" alt="BAJA car racing on dirt track" loading="lazy" />
+            <div class="gmeta"><span>Speed</span><strong>Dust Trail</strong></div>
+          </a>
+          <a class="gcard reveal" style="--d:.12s" href="IMG_9494.JPG" target="_blank" rel="noreferrer">
+            <img src="IMG_9494.JPG" alt="BAJA car water splash event" loading="lazy" />
+            <div class="gmeta"><span>Endurance</span><strong>Water Splash</strong></div>
+          </a>
+          <a class="gcard reveal" style="--d:.18s" href="IMG_6633.JPG" target="_blank" rel="noreferrer">
+            <img src="IMG_6633.JPG" alt="BAJA car side profile in motion" loading="lazy" />
+            <div class="gmeta"><span>Control</span><strong>Cornering</strong></div>
+          </a>
+          <a class="gcard reveal" style="--d:.24s" href="IMG_6169.JPG" target="_blank" rel="noreferrer">
+            <img src="IMG_6169.JPG" alt="BAJA car mud run event" loading="lazy" />
+            <div class="gmeta"><span>Grip</span><strong>Mud Run</strong></div>
+          </a>
+          <a class="gcard reveal" style="--d:.3s" href="IMG_9695.JPG" target="_blank" rel="noreferrer">
+            <img src="IMG_9695.JPG" alt="BAJA car passing through track gate" loading="lazy" />
+            <div class="gmeta"><span>Finish</span><strong>Signature</strong></div>
+          </a>
         </div>
       </div>
     </section>
 
-  </main><!-- /scroll-main -->
+    <!-- ─ S11: CONTACT ─ -->
+    <section id="sec-contact" class="content-section">
+      <div class="cs-inner">
+        <div class="cs-header">
+          <p class="sec-eyebrow reveal"><span class="ey-line"></span>Get in touch</p>
+          <h2 class="sec-title reveal-up">Contact<br><em>the Team.</em></h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card reveal">
+            <h3>Partnerships</h3>
+            <p>Support the next generation of BAJA engineering. Reach out for sponsorship, manufacturing support, or technical collaboration.</p>
+            <a class="contact-link" href="mailto:teampredatorsracing@gmail.com">teampredatorsracing@gmail.com</a>
+            <div class="contact-pill-row">
+              <a class="cpill" href="#" aria-label="Instagram">Instagram</a>
+              <a class="cpill" href="#" aria-label="LinkedIn">LinkedIn</a>
+              <a class="cpill" href="#" aria-label="Contact">Email</a>
+            </div>
+          </div>
+
+          <form class="contact-form reveal" style="--d:.08s">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" autocomplete="name" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@domain.com" autocomplete="email" />
+            </label>
+            <label class="full">
+              <span>Message</span>
+              <textarea name="message" rows="5" placeholder="Tell us about your proposal, support, or query."></textarea>
+            </label>
+            <button class="btn-primary" type="button">Send Message</button>
+            <p class="form-note">This form is UI-only. Hook it to a backend or service (Formspark / Formspree) when deploying.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating ambient elements -->
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

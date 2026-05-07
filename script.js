@@ -1,8 +1,3 @@
-/* =============================================================================
-   TEAM PREDATORS RACING — Image Sequence Scroll Engine
-   Apple-style canvas scrubber: 240 JPG frames synced to scroll progress
-   ============================================================================= */
-
 (function () {
   'use strict';
 
@@ -14,31 +9,27 @@
   const FRAME_PREFIX  = 'ezgif-frame-';
   const FRAME_EXT     = '.jpg';
 
-  // Scroll-to-frame mapping:
-  // Each scroll section controls which frame range plays
-  // [scrollStartFraction, scrollEndFraction, frameStart, frameEnd]
-  // Fractions are proportional to total page scroll height
+  // [startScrollFraction, endScrollFraction, startFrame, endFrame]
   const FRAME_MAP = [
-    [0.00, 0.12, 1,   1],    // HERO    — static first frame (front 3/4 view)
-    [0.12, 0.30, 1,   60],   // ENGINEERING — rotate to side showing chassis
-    [0.30, 0.48, 60,  120],  // PERFORMANCE — continue rotating, suspension visible
-    [0.48, 0.65, 120, 180],  // POWER   — rear three-quarter view showing engine area
-    [0.65, 0.78, 180, 210],  // FINAL   — slow to dramatic front stance
-    [0.78, 1.00, 210, 240],  // HOLD at final (full 360° completion)
+    [0.00, 0.15, 1,   1],    // HERO
+    [0.15, 0.35, 1,   60],   // ABOUT/ENGINEERING
+    [0.35, 0.55, 60,  120],  // PERFORMANCE
+    [0.55, 0.75, 120, 180],  // POWER
+    [0.75, 0.90, 180, 240],  // FINAL REVEAL
+    [0.90, 1.00, 240, 240],  // HOLD
   ];
 
   // ── State ───────────────────────────────────────────────────────────────────
   const images       = [];
   let   currentFrame = 0;
   let   loadedCount  = 0;
-  let   canvas, ctx, containerW, containerH;
+  let   canvas, ctx;
+  let   dpr = 1;
 
-  // ── Pad frame number ────────────────────────────────────────────────────────
   function pad(n) {
     return String(n).padStart(3, '0');
   }
 
-  // ── Get frame index from scroll progress ────────────────────────────────────
   function frameAtProgress(p) {
     p = Math.max(0, Math.min(1, p));
     for (const [s, e, fs, fe] of FRAME_MAP) {
@@ -50,7 +41,6 @@
     return TOTAL_FRAMES;
   }
 
-  // ── Draw a frame ────────────────────────────────────────────────────────────
   function drawFrame(idx) {
     idx = Math.max(1, Math.min(TOTAL_FRAMES, Math.round(idx)));
     const img = images[idx - 1];
@@ -60,7 +50,6 @@
     const H = canvas.height;
     ctx.clearRect(0, 0, W, H);
 
-    // Cover-fit, centred
     const iW = img.naturalWidth;
     const iH = img.naturalHeight;
     const scale = Math.max(W / iW, H / iH);
@@ -72,19 +61,20 @@
     ctx.drawImage(img, dx, dy, dw, dh);
     currentFrame = idx;
 
-    // Update HUD
     const hudFrame = document.getElementById('hud-frame');
     if (hudFrame) hudFrame.textContent = pad(idx) + '/' + TOTAL_FRAMES;
   }
 
-  // ── Resize canvas ────────────────────────────────────────────────────────────
   function resizeCanvas() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    canvas.width  = Math.floor(window.innerWidth * dpr);
+    canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     drawFrame(currentFrame);
   }
 
-  // ── Smooth scroll-driven frame update ────────────────────────────────────────
   const scrubProxy = { progress: 0 };
   let   rafPending = false;
 
@@ -100,9 +90,29 @@
     }
   }
 
-  // ── GSAP scroll setup ────────────────────────────────────────────────────────
+  // ── Counters ─────────────────────────────────────────────────────────────────
+  function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      ScrollTrigger.create({
+        trigger: counter,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+          const target = +counter.getAttribute('data-target');
+          gsap.to(counter, {
+            innerHTML: target,
+            duration: 2,
+            snap: { innerHTML: 1 },
+            ease: "power2.out"
+          });
+        }
+      });
+    });
+  }
+
+  // ── GSAP setup ───────────────────────────────────────────────────────────────
   function setupGSAP() {
-    // Master scrubber
     gsap.to(scrubProxy, {
       progress: 1,
       ease: 'none',
@@ -115,52 +125,68 @@
       }
     });
 
-    // Nav glass on scroll
+    // Nav blur
     ScrollTrigger.create({
-      start: 60,
-      onEnter:  () => document.getElementById('site-nav').classList.add('glass'),
-      onLeaveBack: () => document.getElementById('site-nav').classList.remove('glass'),
+      start: 50,
+      onEnter:  () => document.getElementById('site-nav').classList.add('scrolled'),
+      onLeaveBack: () => document.getElementById('site-nav').classList.remove('scrolled'),
     });
 
-    // Section dot tracking
-    const sections = document.querySelectorAll('.scroll-section');
-    const dots      = document.querySelectorAll('.s-dot');
-    sections.forEach((sec, i) => {
+    // Section dots
+    const dotSections = [
+      '#hero',
+      '#sec-about',
+      '#sec-vehicle',
+      '#sec-team',
+      '#sec-achievements',
+      '#sec-sponsors',
+      '#sec-gallery',
+      '#sec-contact',
+    ].map(sel => document.querySelector(sel)).filter(Boolean);
+    const dots = Array.from(document.querySelectorAll('.sd'));
+
+    dotSections.forEach((sec, i) => {
       ScrollTrigger.create({
         trigger: sec,
         start: 'top 55%',
-        end: 'bottom 45%',
-        onEnter:      () => updateDot(i),
-        onEnterBack:  () => updateDot(i),
+        end: 'bottom 55%',
+        onEnter: () => updateDot(i),
+        onEnterBack: () => updateDot(i),
       });
     });
+
     function updateDot(i) {
-      dots.forEach((d, j) => d.classList.toggle('active', i === j));
+      dots.forEach((d, j) => {
+        if (i === j) d.classList.add('active');
+        else d.classList.remove('active');
+      });
     }
 
-    // GSAP text reveals
+    // Text reveals
     document.querySelectorAll('.reveal').forEach(el => {
-      // Skip hero elements (they have CSS animations already)
-      if (el.closest('#hero')) return;
-      gsap.from(el, {
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' },
-        y: 45, opacity: 0, duration: 1.0, ease: 'power3.out',
-      });
+      gsap.fromTo(el, 
+        { opacity: 0, y: 30 },
+        {
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: parseFloat(el.style.getPropertyValue('--d')) || 0
+        }
+      );
     });
 
-    // Stagger spec-cards
-    document.querySelectorAll('.spec-card, .team-card, .spc-card').forEach((el, i) => {
-      gsap.from(el, {
-        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none reverse' },
-        y: 35, opacity: 0, duration: .8, delay: (i % 4) * 0.1, ease: 'power3.out',
-      });
+    document.querySelectorAll('.reveal-up').forEach(el => {
+      gsap.fromTo(el, 
+        { opacity: 0, y: 60 },
+        {
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
+          opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: parseFloat(el.style.getPropertyValue('--d')) || 0
+        }
+      );
     });
 
     ScrollTrigger.refresh();
   }
 
-  // ── Hero idle rotation ────────────────────────────────────────────────────────
-  // While the user hasn't scrolled, slowly animate through first 15 frames
+  // ── Idle Anim ────────────────────────────────────────────────────────────────
   let idleRaf  = null;
   let idleFrame = 1;
   let idleDir   = 1;
@@ -168,9 +194,9 @@
   function startIdle() {
     function tick() {
       idleRaf = requestAnimationFrame(tick);
-      idleFrame += 0.15 * idleDir;
-      if (idleFrame >= 15) idleDir = -1;
-      if (idleFrame <= 1)  idleDir =  1;
+      idleFrame += 0.1 * idleDir;
+      if (idleFrame >= 15) { idleFrame = 15; idleDir = -1; }
+      if (idleFrame <= 1)  { idleFrame = 1;  idleDir =  1; }
       drawFrame(Math.round(idleFrame));
     }
     tick();
@@ -180,11 +206,10 @@
     if (idleRaf) { cancelAnimationFrame(idleRaf); idleRaf = null; }
   }
 
-  // ── Load all frames ──────────────────────────────────────────────────────────
+  // ── Loader ───────────────────────────────────────────────────────────────────
   function loadFrames(onComplete) {
-    const bar    = document.getElementById('loader-bar');
-    const pct    = document.getElementById('loader-pct');
-    const status = document.getElementById('loader-status');
+    const bar = document.getElementById('loader-bar');
+    const pct = document.getElementById('loader-pct');
 
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image();
@@ -194,42 +219,69 @@
       img.onload = img.onerror = () => {
         loadedCount++;
         const p = loadedCount / TOTAL_FRAMES;
-        if (bar) bar.style.width = (p * 100).toFixed(1) + '%';
+        if (bar) bar.style.width = (p * 100) + '%';
         if (pct) pct.textContent = Math.round(p * 100) + '%';
         if (loadedCount === TOTAL_FRAMES) onComplete();
       };
     }
   }
 
-  // ── Scroll-to helper ─────────────────────────────────────────────────────────
-  function initScrollButtons() {
+  // ── UI Interactions ──────────────────────────────────────────────────────────
+  function initInteractions() {
+    // Scroll buttons
     document.querySelectorAll('[data-scroll-to]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(el.dataset.scrollTo);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('nav-drawer').classList.remove('active');
+      });
+    });
+
+    // Dots also scroll
+    document.querySelectorAll('#sec-dots .sd[data-scroll-to]').forEach(el => {
       el.addEventListener('click', e => {
         e.preventDefault();
         const target = document.querySelector(el.dataset.scrollTo);
         if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // Mobile menu
+    const burger = document.getElementById('nav-burger');
+    const drawer = document.getElementById('nav-drawer');
+    if (burger && drawer) {
+      burger.addEventListener('click', () => {
+        drawer.classList.toggle('active');
+      });
+    }
+
+    // Premium hover spotlight on department cards
+    document.querySelectorAll('.dept-card').forEach(card => {
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width) * 100;
+        const y = ((e.clientY - r.top) / r.height) * 100;
+        card.style.setProperty('--mx', x + '%');
+        card.style.setProperty('--my', y + '%');
+      });
+    });
   }
 
-  // ── Main ─────────────────────────────────────────────────────────────────────
   function init() {
     canvas = document.getElementById('buggy-canvas');
     ctx    = canvas.getContext('2d');
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-    initScrollButtons();
+    initInteractions();
 
     loadFrames(() => {
-      // Hide loader
       const loader = document.getElementById('loader');
       gsap.to(loader, {
-        opacity: 0, duration: 1.5, ease: 'power2.out',
+        opacity: 0, duration: 1, ease: 'power2.out', delay: 0.5,
         onComplete: () => {
           loader.style.display = 'none';
-          // Start idle rotation on hero
           startIdle();
-          // Kill idle once user scrolls
           let scrollStarted = false;
           window.addEventListener('scroll', () => {
             if (!scrollStarted && window.scrollY > 10) {
@@ -240,13 +292,12 @@
         }
       });
 
-      // Draw frame 1 immediately
       drawFrame(1);
       setupGSAP();
+      initCounters();
     });
   }
 
-  // ── Boot ─────────────────────────────────────────────────────────────────────
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
