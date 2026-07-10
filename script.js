@@ -256,16 +256,7 @@
       });
     }
 
-    // Premium hover spotlight on department cards
-    document.querySelectorAll('.dept-card').forEach(card => {
-      card.addEventListener('pointermove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        card.style.setProperty('--mx', x + '%');
-        card.style.setProperty('--my', y + '%');
-      });
-    });
+
   }
 
   function init() {
