@@ -615,6 +615,13 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--f-head); line-height: 1.1; }
   min-width: min(100%, 360px);
   list-style: none;
 }
+@media (min-width: 900px) {
+  .achievement-results {
+    grid-template-columns: repeat(2, 1fr);
+    min-width: min(100%, 640px);
+    gap: 0.8rem 2rem;
+  }
+}
 .achievement-results li {
   display: grid;
   grid-template-columns: 96px 1fr;
