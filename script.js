@@ -25,6 +25,7 @@
   let   loadedCount  = 0;
   let   canvas, ctx;
   let   dpr = 1;
+  let   currentYear  = '2027';
 
   function pad(n) {
     return String(n).padStart(3, '0');
@@ -183,6 +184,34 @@
       );
     });
 
+    // Timeline spine progress animation
+    gsap.fromTo('.ach-spine-progress', 
+      { height: '0%' },
+      {
+        scrollTrigger: {
+          trigger: '.ach-timeline',
+          start: 'top 25%',
+          end: 'bottom 75%',
+          scrub: true
+        },
+        height: '100%',
+        ease: 'none'
+      }
+    );
+
+    // Active state toggles for timeline items
+    document.querySelectorAll('.ach-item').forEach(item => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 65%',
+        end: 'bottom 35%',
+        onEnter: () => item.classList.add('active'),
+        onEnterBack: () => item.classList.add('active'),
+        onLeave: () => item.classList.remove('active'),
+        onLeaveBack: () => item.classList.remove('active')
+      });
+    });
+
     ScrollTrigger.refresh();
   }
 
@@ -226,6 +255,258 @@
     }
   }
 
+  // ── Year State & Rendering ──────────────────────────────────────────────────
+  function renderYearData(year) {
+    const data = window.YEARLY_DATA[year];
+    if (!data) return;
+
+    // 1. Vehicle Showcase Section
+    const vehicleTitle = document.getElementById('vehicle-title');
+    if (vehicleTitle) {
+      const words = data.vehicle.tagline.split(' ');
+      vehicleTitle.innerHTML = `${words[0]}<br><em>${words.slice(1).join(' ')}</em>`;
+    }
+    const vehicleDesc = document.getElementById('vehicle-desc');
+    if (vehicleDesc) vehicleDesc.textContent = data.vehicle.description;
+
+    const specGrid = document.getElementById('spec-grid-container');
+    if (specGrid) {
+      specGrid.innerHTML = data.vehicle.specs.map((spec, index) => `
+        <div class="spec-card reveal" style="--d:${index * 0.1}s">
+          <div class="sc-num">${spec.num}</div>
+          <h3>${spec.title}</h3>
+          <p>${spec.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    // 2. Performance Section
+    const perfTitle = document.getElementById('perf-title');
+    if (perfTitle) {
+      const words = data.vehicle.performance.tagline.split(' ');
+      perfTitle.innerHTML = `${words[0]}<br><em>${words.slice(1).join(' ')}</em>`;
+    }
+    const perfDesc = document.getElementById('perf-desc');
+    if (perfDesc) perfDesc.textContent = data.vehicle.performance.description;
+
+    const perfBars = document.getElementById('perf-bars-container');
+    if (perfBars) {
+      perfBars.innerHTML = data.vehicle.performance.bars.map((bar, index) => `
+        <div class="pbar reveal" style="--d:${index * 0.05}s">
+          <div class="pbar-head"><span>${bar.label}</span><strong>${bar.value}</strong></div>
+          <div class="pbar-track"><div class="pbar-fill ${index >= 2 ? 'accent' : ''}" style="--w:${bar.width}"></div></div>
+        </div>
+      `).join('');
+    }
+
+    // 3. Power Section
+    const powerTitle = document.getElementById('power-title');
+    if (powerTitle) {
+      const words = data.vehicle.power.tagline.split(' ');
+      powerTitle.innerHTML = `${words[0]}<br><em>${words.slice(1).join(' ')}</em>`;
+    }
+    const powerDesc = document.getElementById('power-desc');
+    if (powerDesc) powerDesc.textContent = data.vehicle.power.description;
+
+    const powerGrid = document.getElementById('power-grid-container');
+    if (powerGrid) {
+      powerGrid.innerHTML = `
+        <div class="pg-item reveal">
+          <div class="pg-val"><span class="counter" data-target="${data.vehicle.power.hp}">0</span><em>hp</em></div>
+          <div class="pg-label">Max Power</div>
+        </div>
+        <div class="pg-item reveal" style="--d:.1s">
+          <div class="pg-val"><span class="counter" data-target="${data.vehicle.power.cc}">0</span><em>cc</em></div>
+          <div class="pg-label">Displacement</div>
+        </div>
+        <div class="pg-item reveal" style="--d:.15s">
+          <div class="pg-val">${data.vehicle.power.transmission}</div>
+          <div class="pg-label">Transmission</div>
+        </div>
+        <div class="pg-item reveal" style="--d:.2s">
+          <div class="pg-val">${data.vehicle.power.ratio}</div>
+          <div class="pg-label">Final Ratio</div>
+        </div>
+      `;
+    }
+    const powerEnduranceDesc = document.getElementById('power-endurance-desc');
+    if (powerEnduranceDesc) powerEnduranceDesc.textContent = data.vehicle.power.endurance;
+
+    // 4. HUD Updates
+    const hudVehicle = document.getElementById('hud-vehicle');
+    if (hudVehicle) hudVehicle.textContent = data.vehicle.name;
+
+    const hudStatus = document.getElementById('hud-status');
+    if (hudStatus) {
+      hudStatus.textContent = data.status;
+      if (data.status === 'ACTIVE') {
+        hudStatus.className = 'hv live';
+      } else {
+        hudStatus.className = 'hv';
+      }
+    }
+
+    // 5. Team Section
+    const teamContainer = document.getElementById('team-members-container');
+    if (teamContainer) {
+      teamContainer.innerHTML = data.team.map((member, index) => {
+        const initials = member.name.split(' ').map(n => n[0]).join('').toUpperCase();
+        const linkedinHtml = member.linkedin ? `
+          <a href="${member.linkedin}" target="_blank" rel="noopener noreferrer" class="tm-linkedin" aria-label="${member.name} LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+        ` : '';
+        return `
+          <div class="tm-card reveal" style="--d:${index * 0.06}s">
+            <div class="tm-photo-wrap">
+              <div class="tm-photo-placeholder">${initials}</div>
+              <img src="${member.photo}" alt="${member.name}" class="tm-photo" onerror="this.style.display='none';" />
+            </div>
+            <h4>${member.name}</h4>
+            <p>${member.role}</p>
+            ${linkedinHtml}
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  function killTriggersInContainer(container) {
+    if (!container) return;
+    ScrollTrigger.getAll().forEach(trigger => {
+      if (trigger.trigger && container.contains(trigger.trigger)) {
+        trigger.kill();
+      }
+    });
+  }
+
+  function animateNewElements(container) {
+    if (!container) return;
+
+    // Counters
+    container.querySelectorAll('.counter').forEach(counter => {
+      ScrollTrigger.create({
+        trigger: counter,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+          const target = +counter.getAttribute('data-target');
+          gsap.to(counter, {
+            innerHTML: target,
+            duration: 2,
+            snap: { innerHTML: 1 },
+            ease: "power2.out"
+          });
+        }
+      });
+    });
+
+    // Reveal elements
+    container.querySelectorAll('.reveal').forEach(el => {
+      gsap.fromTo(el, 
+        { opacity: 0, y: 30 },
+        {
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: parseFloat(el.style.getPropertyValue('--d')) || 0
+        }
+      );
+    });
+
+    container.querySelectorAll('.reveal-up').forEach(el => {
+      gsap.fromTo(el, 
+        { opacity: 0, y: 60 },
+        {
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
+          opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: parseFloat(el.style.getPropertyValue('--d')) || 0
+        }
+      );
+    });
+
+    // Performance progress bars custom scroll animation
+    container.querySelectorAll('.pbar-fill').forEach(fill => {
+      const w = fill.style.getPropertyValue('--w') || '100%';
+      fill.style.width = '0%';
+      ScrollTrigger.create({
+        trigger: fill,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+          fill.style.width = w;
+        }
+      });
+    });
+  }
+
+  function changeYear(year, immediate = false) {
+    if (year === currentYear && !immediate) return;
+    currentYear = year;
+
+    // Synchronize UI buttons
+    document.querySelectorAll('.year-btn').forEach(btn => {
+      if (btn.getAttribute('data-year') === year) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+
+    if (immediate) {
+      killTriggersInContainer(document.getElementById('sec-vehicle'));
+      killTriggersInContainer(document.getElementById('sec-performance'));
+      killTriggersInContainer(document.getElementById('sec-power'));
+      killTriggersInContainer(document.getElementById('sec-team'));
+
+      renderYearData(year);
+
+      animateNewElements(document.getElementById('sec-vehicle'));
+      animateNewElements(document.getElementById('sec-performance'));
+      animateNewElements(document.getElementById('sec-power'));
+      animateNewElements(document.getElementById('sec-team'));
+
+      ScrollTrigger.refresh();
+      return;
+    }
+
+    const panels = [
+      document.querySelector('#sec-vehicle .s-panel'),
+      document.querySelector('#sec-performance .s-panel'),
+      document.querySelector('#sec-power .s-panel'),
+      document.getElementById('team-members-container')
+    ].filter(Boolean);
+
+    // Fade out panels
+    gsap.to(panels, {
+      opacity: 0,
+      y: 20,
+      duration: 0.4,
+      stagger: 0.05,
+      ease: 'power2.in',
+      onComplete: () => {
+        killTriggersInContainer(document.getElementById('sec-vehicle'));
+        killTriggersInContainer(document.getElementById('sec-performance'));
+        killTriggersInContainer(document.getElementById('sec-power'));
+        killTriggersInContainer(document.getElementById('sec-team'));
+
+        renderYearData(year);
+
+        animateNewElements(document.getElementById('sec-vehicle'));
+        animateNewElements(document.getElementById('sec-performance'));
+        animateNewElements(document.getElementById('sec-power'));
+        animateNewElements(document.getElementById('sec-team'));
+
+        ScrollTrigger.refresh();
+
+        // Fade in new content
+        gsap.to(panels, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.05,
+          ease: 'power2.out'
+        });
+      }
+    });
+  }
+
   // ── UI Interactions ──────────────────────────────────────────────────────────
   function initInteractions() {
     // Scroll buttons
@@ -256,7 +537,13 @@
       });
     }
 
-
+    // Year selectors click
+    document.querySelectorAll('.year-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const year = btn.getAttribute('data-year');
+        changeYear(year);
+      });
+    });
   }
 
   function init() {
@@ -286,6 +573,7 @@
       drawFrame(1);
       setupGSAP();
       initCounters();
+      changeYear('2027', true);
     });
   }
 

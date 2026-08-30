@@ -77,8 +77,8 @@
 
   <!-- ══ HUD ══ -->
   <div id="hud">
-    <div class="hud-row"><span class="hl">VEHICLE</span><span class="hv">PREDATOR E19</span></div>
-    <div class="hud-row"><span class="hl">STATUS</span><span class="hv live">ACTIVE</span></div>
+    <div class="hud-row"><span class="hl">VEHICLE</span><span class="hv" id="hud-vehicle">PREDATOR E19</span></div>
+    <div class="hud-row"><span class="hl">STATUS</span><span class="hv live" id="hud-status">ACTIVE</span></div>
     <div class="hud-row"><span class="hl">FRAME</span><span class="hv" id="hud-frame">001/240</span></div>
   </div>
 
@@ -102,7 +102,7 @@
       <div class="hero-layout">
         <div class="hero-eyebrow reveal">
           <span class="eyebrow-line"></span>
-          <span>BAJA SAE INDIA · DYPCOE · 2025</span>
+          <span>BAJA SAE INDIA · DYPCOE · 2027</span>
         </div>
         <h1 class="hero-title">
           <span class="ht-team reveal-up">TEAM</span>
@@ -167,10 +167,17 @@
     <!-- ─ S3: VEHICLE SHOWCASE ─ -->
     <section id="sec-vehicle" class="scroll-section">
       <div class="s-panel right-panel">
-        <p class="sec-eyebrow reveal"><span class="ey-line"></span>02 — Vehicle Showcase</p>
-        <h2 class="sec-title reveal-up">Precision<br><em>Engineered.</em></h2>
-        <p class="sec-body reveal">Predator E19 is engineered as a competition-grade off-road platform — structural strength, controlled suspension travel, and reliable endurance power, tuned for dynamic events and brutal terrain.</p>
-        <div class="spec-grid">
+        <div class="sec-header-row">
+          <p class="sec-eyebrow reveal"><span class="ey-line"></span>02 — Vehicle Showcase</p>
+          <div class="year-selector">
+            <button class="year-btn active" data-year="2027">2027</button>
+            <button class="year-btn" data-year="2024">2024</button>
+            <button class="year-btn" data-year="2023">2023</button>
+          </div>
+        </div>
+        <h2 class="sec-title reveal-up" id="vehicle-title">Precision<br><em>Engineered.</em></h2>
+        <p class="sec-body reveal" id="vehicle-desc">Predator E19 is engineered as a competition-grade off-road platform — structural strength, controlled suspension travel, and reliable endurance power, tuned for dynamic events and brutal terrain.</p>
+        <div class="spec-grid" id="spec-grid-container">
           <div class="spec-card reveal">
             <div class="sc-num">01</div>
             <h3>Chromoly Chassis</h3>
@@ -200,9 +207,9 @@
     <section id="sec-performance" class="scroll-section">
       <div class="s-panel left-panel">
         <p class="sec-eyebrow reveal"><span class="ey-line"></span>03 — Suspension & Handling</p>
-        <h2 class="sec-title reveal-up">Control<br><em>in Chaos.</em></h2>
-        <p class="sec-body reveal">Double-wishbone long-travel suspension absorbs every rock and rut. Geometry optimised for stability at speed while maintaining maximum articulation across desert terrain.</p>
-        <div class="perf-bars">
+        <h2 class="sec-title reveal-up" id="perf-title">Control<br><em>in Chaos.</em></h2>
+        <p class="sec-body reveal" id="perf-desc">Double-wishbone long-travel suspension absorbs every rock and rut. Geometry optimised for stability at speed while maintaining maximum articulation across desert terrain.</p>
+        <div class="perf-bars" id="perf-bars-container">
           <div class="pbar reveal">
             <div class="pbar-head"><span>Suspension Travel</span><strong>14"</strong></div>
             <div class="pbar-track"><div class="pbar-fill" style="--w:88%"></div></div>
@@ -233,9 +240,9 @@
     <section id="sec-power" class="scroll-section">
       <div class="s-panel right-panel">
         <p class="sec-eyebrow reveal"><span class="ey-line"></span>04 — Powertrain</p>
-        <h2 class="sec-title reveal-up">Raw Power.<br><em>Refined.</em></h2>
-        <p class="sec-body reveal">Briggs &amp; Stratton 10hp OHV single-cylinder — tuned for BAJA endurance. CVT transmission for seamless power delivery across all terrain types with a 4:1 final drive ratio.</p>
-        <div class="power-grid">
+        <h2 class="sec-title reveal-up" id="power-title">Raw Power.<br><em>Refined.</em></h2>
+        <p class="sec-body reveal" id="power-desc">Briggs &amp; Stratton 10hp OHV single-cylinder — tuned for BAJA endurance. CVT transmission for seamless power delivery across all terrain types with a 4:1 final drive ratio.</p>
+        <div class="power-grid" id="power-grid-container">
           <div class="pg-item reveal">
             <div class="pg-val"><span class="counter" data-target="10">0</span><em>hp</em></div>
             <div class="pg-label">Max Power</div>
@@ -253,11 +260,11 @@
             <div class="pg-label">Final Ratio</div>
           </div>
         </div>
-        <div class="endurance-card reveal" style="--d:.3s">
+        <div class="endurance-card reveal" style="--d:.3s" id="power-endurance-card">
           <div class="ec-icon">⚡</div>
           <div>
             <h3>Endurance Tuned</h3>
-            <p>Air-cooled OHV rated for 4hr continuous operation under desert heat and off-road stress loads.</p>
+            <p id="power-endurance-desc">Air-cooled OHV rated for 4hr continuous operation under desert heat and off-road stress loads.</p>
           </div>
         </div>
       </div>
@@ -268,7 +275,7 @@
       <div class="final-layout">
         <div class="final-badge reveal">PREDATOR E19 · MK-III</div>
         <h2 class="final-title reveal-up">Ready for<br><span class="ft-baja">BAJA</span></h2>
-        <p class="final-sub reveal" style="--d:.2s">Driven by Passion. Powered by Innovation.<br>D.Y. Patil College of Engineering · Pune · 2025</p>
+        <p class="final-sub reveal" style="--d:.2s">Driven by Passion. Powered by Innovation.<br>D.Y. Patil College of Engineering · Pune · 2027</p>
         <div class="final-ctas reveal" style="--d:.35s">
           <button class="btn-primary" data-scroll-to="#sec-team">Meet the Team</button>
           <button class="btn-outline" data-scroll-to="#sec-achievements">Our Achievements</button>
@@ -280,11 +287,19 @@
     <section id="sec-team" class="content-section">
       <div class="cs-inner">
         <div class="cs-header">
-          <p class="sec-eyebrow reveal"><span class="ey-line"></span>The Engineers</p>
+          <div class="sec-header-row full-width">
+            <p class="sec-eyebrow reveal"><span class="ey-line"></span>The Engineers</p>
+            <div class="year-selector">
+              <button class="year-btn active" data-year="2027">2027</button>
+              <button class="year-btn" data-year="2026">2026</button>
+              <button class="year-btn" data-year="2024">2024</button>
+              <button class="year-btn" data-year="2023">2023</button>
+            </div>
+          </div>
           <h2 class="sec-title reveal-up">Meet the<br><em>Predators.</em></h2>
         </div>
 
-        <div class="team-members-grid">
+        <div class="team-members-grid" id="team-members-container">
           <div class="tm-card reveal">
             <div class="tm-photo-wrap">
               <div class="tm-photo-placeholder">SK</div>
@@ -333,6 +348,62 @@
             <h4>Gaurang Karhale</h4>
             <p>Sponsorship Head</p>
           </div>
+          <div class="tm-card reveal" style="--d:.36s">
+            <div class="tm-photo-wrap">
+              <div class="tm-photo-placeholder">AB</div>
+              <img src="team/Ansh Bhanushali.JPG" alt="Ansh Bhanushali" class="tm-photo" onerror="this.style.display='none';" />
+            </div>
+            <h4>Ansh Bhanushali</h4>
+            <p>Advisor</p>
+          </div>
+          <div class="tm-card reveal" style="--d:.42s">
+            <div class="tm-photo-wrap">
+              <div class="tm-photo-placeholder">ND</div>
+              <img src="team/Nilay Deshmukh.JPG" alt="Nilay Deshmukh" class="tm-photo" onerror="this.style.display='none';" />
+            </div>
+            <h4>Nilay Deshmukh</h4>
+            <p>Advisor</p>
+          </div>
+          <div class="tm-card reveal" style="--d:.48s">
+            <div class="tm-photo-wrap">
+              <div class="tm-photo-placeholder">RK</div>
+              <img src="team/Rushikesh Kahandal.JPG" alt="Rushikesh Kahandal" class="tm-photo" onerror="this.style.display='none';" />
+            </div>
+            <h4>Rushikesh Kahandal</h4>
+            <p>Manager</p>
+          </div>
+          <div class="tm-card reveal" style="--d:.54s">
+            <div class="tm-photo-wrap">
+              <div class="tm-photo-placeholder">ST</div>
+              <img src="team/Surbhi Tiwari.JPG" alt="Surbhi Tiwari" class="tm-photo" onerror="this.style.display='none';" />
+            </div>
+            <h4>Surbhi Tiwari</h4>
+            <p>Electronics Head</p>
+          </div>
+          <div class="tm-card reveal" style="--d:.6s">
+            <div class="tm-photo-wrap">
+              <div class="tm-photo-placeholder">TM</div>
+              <img src="team/Tanmay Malode.JPG" alt="Tanmay Malode" class="tm-photo" onerror="this.style.display='none';" />
+            </div>
+            <h4>Tanmay Malode</h4>
+            <p>Powertrain Head</p>
+          </div>
+          <div class="tm-card reveal" style="--d:.66s">
+            <div class="tm-photo-wrap">
+              <div class="tm-photo-placeholder">VP</div>
+              <img src="team/Vedashree Pokharankar.JPG" alt="Vedashree Pokharankar" class="tm-photo" onerror="this.style.display='none';" />
+            </div>
+            <h4>Vedashree Pokharankar</h4>
+            <p>Design Analyst</p>
+          </div>
+          <div class="tm-card reveal" style="--d:.72s">
+            <div class="tm-photo-wrap">
+              <div class="tm-photo-placeholder">YS</div>
+              <img src="team/Yash Shinde.JPG" alt="Yash Shinde" class="tm-photo" onerror="this.style.display='none';" />
+            </div>
+            <h4>Yash Shinde</h4>
+            <p>Suspension Head</p>
+          </div>
         </div>
       </div>
     </section>
@@ -345,90 +416,47 @@
           <h2 class="sec-title reveal-up">Built for<br><em>Victory.</em></h2>
         </div>
 
-        <!-- Big championship stats -->
-        <div class="champ-strip reveal">
-          <div class="champ-item">
-            <div class="champ-num"><span class="counter" data-target="6">0</span><sup>×</sup></div>
-            <div class="champ-label">National Champions</div>
+        <!-- Quick Stats Strip -->
+        <div class="ach-stats-strip reveal">
+          <div class="ach-stat">
+            <div class="ach-stat-num"><span class="counter" data-target="6">0</span><sup>×</sup></div>
+            <div class="ach-stat-label">National Champions</div>
           </div>
-          <div class="champ-div"></div>
-          <div class="champ-item">
-            <div class="champ-num"><span class="counter" data-target="4">0</span></div>
-            <div class="champ-label">Consecutive Titles</div>
+          <div class="ach-stat-div"></div>
+          <div class="ach-stat">
+            <div class="ach-stat-num"><span class="counter" data-target="4">0</span></div>
+            <div class="ach-stat-label">Consecutive Titles</div>
           </div>
-          <div class="champ-div"></div>
-          <div class="champ-item">
-            <div class="champ-num">2017</div>
-            <div class="champ-label">Podium Streak Since</div>
+          <div class="ach-stat-div"></div>
+          <div class="ach-stat">
+            <div class="ach-stat-num">2017</div>
+            <div class="ach-stat-label">Podium Streak Since</div>
+          </div>
+          <div class="ach-stat-div"></div>
+          <div class="ach-stat">
+            <div class="ach-stat-num"><span class="counter" data-target="8">0</span></div>
+            <div class="ach-stat-label">Years Active</div>
           </div>
         </div>
 
-        <!-- Timeline -->
-        <div class="timeline">
-          <div class="tl-spine"></div>
-          <div class="tl-item tl-left reveal">
-            <div class="tl-dot"></div>
-            <div class="tl-card">
-              <div class="tl-yr">2017</div>
-              <div class="tl-badge">Milestone</div>
-              <h3>First National Podium</h3>
-              <p>Beginning of an unbroken podium streak at BAJA SAE India</p>
+        <!-- Achievement Cards -->
+        <div class="achievement-showcase">
+          <article class="achievement-card reveal">
+            <div class="achievement-photo">
+              <img src="Raptor 6 web.jpg" alt="Raptor 6 BAJA vehicle by Team Predators Racing" loading="lazy" />
             </div>
-          </div>
-          <div class="tl-item tl-right reveal" style="--d:.1s">
-            <div class="tl-dot"></div>
-            <div class="tl-card">
-              <div class="tl-yr">2022</div>
-              <div class="tl-badge">National</div>
-              <h3>BAJA SAE India — Top 20 Overall</h3>
-              <p>Strong finish across all dynamic event categories</p>
+            <div class="achievement-info">
+              <p class="achievement-kicker">Achievements</p>
+              <h3>Raptor 6</h3>
+              <div class="achievement-rank">Overall AIR-1</div>
+              <ul class="achievement-results">
+                <li><strong>AIR-1</strong><span>Acceleration</span></li>
+                <li><strong>AIR-1</strong><span>CAE</span></li>
+                <li><strong>AIR-1</strong><span>Raftar</span></li>
+                <li><strong>AIR-1</strong><span>Durability</span></li>
+              </ul>
             </div>
-          </div>
-          <div class="tl-item tl-left reveal" style="--d:.15s">
-            <div class="tl-dot"></div>
-            <div class="tl-card">
-              <div class="tl-yr">2023</div>
-              <div class="tl-badge gold">Award</div>
-              <h3>Best Design Report — BAJA Pithampur</h3>
-              <p>Excellence in engineering documentation and design methodology</p>
-            </div>
-          </div>
-          <div class="tl-item tl-right reveal" style="--d:.2s">
-            <div class="tl-dot"></div>
-            <div class="tl-card">
-              <div class="tl-yr">2023</div>
-              <div class="tl-badge">Performance</div>
-              <h3>Dynamic Events — All Categories Qualified</h3>
-              <p>Clean sweep across every dynamic event at the national championship</p>
-            </div>
-          </div>
-          <div class="tl-item tl-left reveal" style="--d:.25s">
-            <div class="tl-dot"></div>
-            <div class="tl-card">
-              <div class="tl-yr">2024</div>
-              <div class="tl-badge gold">Design</div>
-              <h3>Virtual BAJA — Top 10 Design Submission</h3>
-              <p>Recognised among India's best engineering design teams</p>
-            </div>
-          </div>
-          <div class="tl-item tl-right reveal" style="--d:.3s">
-            <div class="tl-dot"></div>
-            <div class="tl-card">
-              <div class="tl-yr">2024</div>
-              <div class="tl-badge">Endurance</div>
-              <h3>4-Hour Endurance Run Completion</h3>
-              <p>Full endurance race completed under extreme desert conditions</p>
-            </div>
-          </div>
-          <div class="tl-item tl-left reveal" style="--d:.35s">
-            <div class="tl-dot red-dot"></div>
-            <div class="tl-card featured-card">
-              <div class="tl-yr">2025</div>
-              <div class="tl-badge gold">Debut</div>
-              <h3>Predator E19 MK-III — BAJA India Debut</h3>
-              <p>Latest generation vehicle enters competition — built for dominance</p>
-            </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -508,7 +536,7 @@
             <a href="https://www.linkedin.com/in/team-predators-racing" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="#sec-contact">Contact</a>
           </div>
-          <p class="footer-copy">© 2025 Team Predators Racing · D.Y. Patil College of Engineering, Akurdi, Pune</p>
+          <p class="footer-copy">© 2027 Team Predators Racing · D.Y. Patil College of Engineering, Akurdi, Pune</p>
           <p class="footer-sub">BAJA SAE India · Predator E19 · MK-III</p>
         </footer>
       </div>
@@ -605,6 +633,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+  <script src="team_data.js?v=2"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
