@@ -513,9 +513,23 @@
     document.querySelectorAll('[data-scroll-to]').forEach(el => {
       el.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(el.dataset.scrollTo);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-        document.getElementById('nav-drawer').classList.remove('active');
+        const sel = el.dataset.scrollTo;
+        const target = document.querySelector(sel);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          if (sel === '#sec-contact') {
+            const firstCard = target.querySelector('.new-contact-card');
+            if (firstCard) {
+              setTimeout(() => {
+                firstCard.classList.remove('highlight-pulse');
+                void firstCard.offsetWidth; // trigger reflow
+                firstCard.classList.add('highlight-pulse');
+              }, 600);
+            }
+          }
+        }
+        const drawer = document.getElementById('nav-drawer');
+        if (drawer) drawer.classList.remove('active');
       });
     });
 
