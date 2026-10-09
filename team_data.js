@@ -119,6 +119,65 @@ window.YEARLY_DATA = {
       { "name": "Gaurang Karhale", "role": "Team Member", "photo": "team/Gaurang Karhale.JPG", "linkedin": "https://www.linkedin.com/in/gaurang-karhale-754650255/" }
     ]
   },
+  "2025": {
+    "status": "COMPLETED",
+    "vehicle": {
+      "name": "TP16",
+      "tagline": "Proven Contender.",
+      "description": "TP16 delivered a balanced competition package — refined chassis packaging, durable drivetrain components, and event-proven reliability across BAJA SAE India's dynamic and endurance challenges.",
+      "specs": [
+        {
+          "num": "01",
+          "title": "Balanced Chassis",
+          "desc": "Spaceframe layout tuned for strength, serviceability, and competitive weight"
+        },
+        {
+          "num": "02",
+          "title": "Durable Suspension",
+          "desc": "Long-travel geometry with dampers set up for mixed rock and desert terrain"
+        },
+        {
+          "num": "03",
+          "title": "Race Packaging",
+          "desc": "Driver-focused cockpit and system layout for endurance reliability"
+        }
+      ],
+      "performance": {
+        "tagline": "Grip Under Load.",
+        "description": "Suspension and steering setup prioritized predictable handling through technical sections while retaining composure at speed on open desert stretches.",
+        "bars": [
+          { "label": "Suspension Travel", "value": "12.5\"", "width": "80%" },
+          { "label": "Ground Clearance", "value": "12\"", "width": "76%" },
+          { "label": "Steering Lock", "value": "±28°", "width": "71%" },
+          { "label": "Weight Distribution", "value": "47:53", "width": "86%" }
+        ]
+      },
+      "power": {
+        "tagline": "Steady Output.",
+        "description": "Briggs & Stratton 10hp OHV powerplant with CVT drivetrain packaging focused on heat management and continuous endurance operation.",
+        "hp": "10",
+        "cc": "305",
+        "transmission": "CVT",
+        "ratio": "4.2:1",
+        "endurance": "Dust shielding and underbody protection configured for multi-hour off-road endurance runs."
+      }
+    },
+    "team": [
+      { "name": "Shubham Mohite", "role": "Captain", "photo": "", "linkedin": "https://www.linkedin.com/in/shubham-mohite-135503194/" },
+      { "name": "Khoyna Sachdev", "role": "Manager", "photo": "", "linkedin": "https://www.linkedin.com/in/khoyna-sachdev-6b76b9236/" },
+      { "name": "Jayesh Saindane", "role": "Driver", "photo": "", "linkedin": "https://www.linkedin.com/in/jayesh-saindane/" },
+      { "name": "Sanket Ghadage", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/sanket-ghadage-a328b821a/" },
+      { "name": "Mangesh Rathod", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/mangesh-rathod-474596293/" },
+      { "name": "Prithviraj Jadhav", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/prithviraj-jadhav-120599234/" },
+      { "name": "Yash Mahajan", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/yash-mahajan-1658a82ba/" },
+      { "name": "Yogesh Maney", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/yogeshmaney1/" },
+      { "name": "Shreyesh Dhaigude", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/shreyash021/" },
+      { "name": "Deep Pawar", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/deep-pawar117/" },
+      { "name": "Mavith Saldanha", "role": "Team Lead", "photo": "", "linkedin": "https://www.linkedin.com/in/mavith-saldanha31/" },
+      { "name": "Atharva Warke", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/atharva-warke-28sept04/" },
+      { "name": "Sanket Bhandare", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/sanket-bhandare1/" }
+    ]
+  },
   "2024": {
     "status": "RETRO/COMPLETED",
     "vehicle": {
