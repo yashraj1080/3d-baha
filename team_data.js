@@ -44,14 +44,19 @@ window.YEARLY_DATA = {
       }
     },
     "team": [
-      { "name": "Samarth Vishwas Kesarkar", "role": "Captain", "photo": "team/Samarth Kesarkar.JPG", "linkedin": "https://www.linkedin.com/in/samarth-vishwas-kesarkar-475ba2276/" },
+      { "name": "Samarth Kesarkar", "role": "Captain", "photo": "team/Samarth Kesarkar.JPG", "linkedin": "https://www.linkedin.com/in/samarth-vishwas-kesarkar-475ba2276/" },
+      { "name": "Arnav Kulkarni", "role": "Vice Captain", "photo": "team/Arnav Kulkarni.JPG", "linkedin": "" },
       { "name": "Aditya Pardeshi", "role": "Manager", "photo": "team/Aditya Pardeshi.JPG", "linkedin": "https://www.linkedin.com/in/aditya-pardeshi-00191531a/" },
-      { "name": "Harshvardhansinh Pardeshi", "role": "Vehicle Dynamics Head", "photo": "team/Harsh Pardeshi.JPG", "linkedin": "https://www.linkedin.com/in/harshvardhansinh-pardeshi-143b5228b/" },
-      { "name": "Shubham Chaudhari", "role": "Electrical Head", "photo": "", "linkedin": "https://www.linkedin.com/in/shubham-chaudhari-720938289/" },
-      { "name": "Nilesh Dishagat", "role": "Chassis Head", "photo": "", "linkedin": "https://www.linkedin.com/in/nilesh-dishagat-86b1572a4/" },
-      { "name": "Vivek Shelar", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/vivek-shelar-534aa12a3/" },
-      { "name": "Priyanshu Vidhate", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/priyanshu-vidhate-9918a940a/" },
-      { "name": "Gaurang Karhale", "role": "Team Member", "photo": "team/Gaurang Karhale.JPG", "linkedin": "https://www.linkedin.com/in/gaurang-karhale-754650255/" }
+      { "name": "Harsh Pardeshi", "role": "Dynamic Head", "photo": "team/Harsh Pardeshi.JPG", "linkedin": "https://www.linkedin.com/in/harshvardhansinh-pardeshi-143b5228b/" },
+      { "name": "Priyanshu Kumbharde", "role": "Chassis Head", "photo": "team/Priyanshu Kumbharde.JPG", "linkedin": "" },
+      { "name": "Gaurang Karhale", "role": "Sponsorship Head", "photo": "team/Gaurang Karhale.JPG", "linkedin": "https://www.linkedin.com/in/gaurang-karhale-754650255/" },
+      { "name": "Ansh Bhanushali", "role": "Advisor", "photo": "team/Ansh Bhanushali.JPG", "linkedin": "" },
+      { "name": "Nilay Deshmukh", "role": "Advisor", "photo": "team/Nilay Deshmukh.JPG", "linkedin": "" },
+      { "name": "Rushikesh Kahandal", "role": "Manager", "photo": "team/Rushikesh Kahandal.JPG", "linkedin": "" },
+      { "name": "Surbhi Tiwari", "role": "Electronics Head", "photo": "team/Surbhi Tiwari.JPG", "linkedin": "" },
+      { "name": "Tanmay Malode", "role": "Powertrain Head", "photo": "team/Tanmay Malode.JPG", "linkedin": "" },
+      { "name": "Vedashree Pokharankar", "role": "Design Analyst", "photo": "team/Vedashree Pokharankar.JPG", "linkedin": "" },
+      { "name": "Yash Shinde", "role": "Suspension Head", "photo": "team/Yash Shinde.JPG", "linkedin": "" }
     ]
   },
   "2026": {
