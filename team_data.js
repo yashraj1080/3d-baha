@@ -291,5 +291,162 @@ window.YEARLY_DATA = {
       { "name": "Gauri Khrache", "role": "Team Member", "photo": "", "linkedin": "" },
       { "name": "Yashodeep Patil", "role": "Team Member", "photo": "", "linkedin": "" }
     ]
+  },
+  "2022": {
+    "status": "HISTORICAL",
+    "vehicle": {
+      "name": "TP13",
+      "tagline": "Built to Endure.",
+      "description": "TP13 marked a defining chapter for Team Predators Racing — a competition-proven platform focused on durability, packaging discipline, and consistent performance across BAJA SAE India's static and dynamic events.",
+      "specs": [
+        {
+          "num": "01",
+          "title": "Rigid Spaceframe",
+          "desc": "Tubular chassis designed for torsional stiffness and impact resilience"
+        },
+        {
+          "num": "02",
+          "title": "Long-Travel Suspension",
+          "desc": "Double-wishbone setup tuned for rock, mud, and desert endurance"
+        },
+        {
+          "num": "03",
+          "title": "Protected Drivetrain",
+          "desc": "Skid-shielded powertrain packaging for continuous off-road abuse"
+        }
+      ],
+      "performance": {
+        "tagline": "Steady Through Terrain.",
+        "description": "Suspension and steering geometry prioritized predictable handling through technical sections while retaining composure on high-speed desert stretches.",
+        "bars": [
+          { "label": "Suspension Travel", "value": "11\"", "width": "70%" },
+          { "label": "Ground Clearance", "value": "11.5\"", "width": "72%" },
+          { "label": "Steering Lock", "value": "±27°", "width": "68%" },
+          { "label": "Weight Distribution", "value": "45:55", "width": "82%" }
+        ]
+      },
+      "power": {
+        "tagline": "Reliable Mechanical Power.",
+        "description": "Stock Briggs & Stratton OHV single-cylinder engine configured for raw low-end torque output under severe load conditions.",
+        "hp": "10",
+        "cc": "305",
+        "transmission": "Standard CVT",
+        "ratio": "4.5:1",
+        "endurance": "Reinforced bash plates and skid shields protecting critical engine and drivetrain components."
+      }
+    },
+    "team": [
+      { "name": "Pruthviraj Shinde", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/pruthviraj-shinde-3389621b6/" },
+      { "name": "Aryan Kesharwani", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/aryan-kesharwani-b09640198/" },
+      { "name": "Vipul Jadhav", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/vipul-jadhav-4100871b9/" },
+      { "name": "Ali Abu Farjad", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/ali-abu-farjad-a9474b136/" },
+      { "name": "Vikas Singh", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/vikas-singh-89616a216/" },
+      { "name": "Sudip Chavan", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/sudip-chavan/" }
+    ]
+  },
+  "2021": {
+    "status": "HISTORICAL",
+    "vehicle": {
+      "name": "TP12",
+      "tagline": "Competition Hardened.",
+      "description": "TP12 carried forward Team Predators Racing's competitive edge — refined packaging, durable mechanical systems, and event-ready reliability across BAJA SAE India's demanding course conditions.",
+      "specs": [
+        {
+          "num": "01",
+          "title": "Competition Chassis",
+          "desc": "Spaceframe layout balanced for strength, serviceability, and race weight"
+        },
+        {
+          "num": "02",
+          "title": "Terrain-Ready Suspension",
+          "desc": "Wishbone geometry with dampers set up for mixed rock and desert terrain"
+        },
+        {
+          "num": "03",
+          "title": "Endurance Packaging",
+          "desc": "Driver-focused cockpit and system layout for multi-hour reliability"
+        }
+      ],
+      "performance": {
+        "tagline": "Grip Under Load.",
+        "description": "Suspension and steering setup prioritized predictable handling through technical sections while retaining composure at speed on open desert stretches.",
+        "bars": [
+          { "label": "Suspension Travel", "value": "10.5\"", "width": "66%" },
+          { "label": "Ground Clearance", "value": "11\"", "width": "68%" },
+          { "label": "Steering Lock", "value": "±26°", "width": "65%" },
+          { "label": "Weight Distribution", "value": "46:54", "width": "84%" }
+        ]
+      },
+      "power": {
+        "tagline": "Steady Output.",
+        "description": "Briggs & Stratton 10hp OHV powerplant with CVT drivetrain packaging focused on heat management and continuous endurance operation.",
+        "hp": "10",
+        "cc": "305",
+        "transmission": "CVT",
+        "ratio": "4.5:1",
+        "endurance": "Dust shielding and underbody protection configured for multi-hour off-road endurance runs."
+      }
+    },
+    "team": [
+      { "name": "Pruthviraj Shinde", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/pruthviraj-shinde-3389621b6/" },
+      { "name": "Shrikant Nakhate", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/shrikant-nakhate-a20b591a4/" },
+      { "name": "Vipul Jadhav", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/vipul-jadhav-4100871b9/" },
+      { "name": "Vedant Kulkarni", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/vedant-kulkarni-442b81189/" },
+      { "name": "Ali Abu Farjad", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/ali-abu-farjad-a9474b136/" },
+      { "name": "Anshul Gupta", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/anshul-gupta-a31723169/" },
+      { "name": "Apurva Mahind", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/apurva-mahind-465b75177/" }
+    ]
+  },
+  "2020": {
+    "status": "HISTORICAL",
+    "vehicle": {
+      "name": "TP11",
+      "tagline": "Foundation Years.",
+      "description": "TP11 represents an early competitive era for Team Predators Racing — building core engineering practices, mechanical reliability, and the culture that defined later championship seasons.",
+      "specs": [
+        {
+          "num": "01",
+          "title": "Core Chassis",
+          "desc": "Foundational tubular spaceframe focused on structural integrity"
+        },
+        {
+          "num": "02",
+          "title": "Durable Links",
+          "desc": "Heavy-duty suspension links engineered for reliability over complexity"
+        },
+        {
+          "num": "03",
+          "title": "Protected Powertrain",
+          "desc": "Simple, serviceable drivetrain packaging for harsh track conditions"
+        }
+      ],
+      "performance": {
+        "tagline": "Pure Mechanical Grip.",
+        "description": "Standard double-wishbone suspension design utilizing heavy-duty steel links for durability over dynamic rock crawl challenges.",
+        "bars": [
+          { "label": "Suspension Travel", "value": "10\"", "width": "62%" },
+          { "label": "Ground Clearance", "value": "10.5\"", "width": "64%" },
+          { "label": "Steering Lock", "value": "±25°", "width": "62%" },
+          { "label": "Weight Distribution", "value": "45:55", "width": "82%" }
+        ]
+      },
+      "power": {
+        "tagline": "Reliable Mechanical Power.",
+        "description": "Stock Briggs & Stratton OHV single-cylinder engine configured for raw low-end torque output under severe load conditions.",
+        "hp": "10",
+        "cc": "305",
+        "transmission": "Standard CVT",
+        "ratio": "4.5:1",
+        "endurance": "Fitted with reinforced bash plates shielding critical engine components."
+      }
+    },
+    "team": [
+      { "name": "Rugved Bopardikar", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/rugved-bopardikar/" },
+      { "name": "Pranav Khatekar", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/pranavkhatekar/" },
+      { "name": "Anshul Gupta", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/anshul-gupta-a31723169/" },
+      { "name": "Apurva Mahind", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/apurva-mahind-465b75177/" },
+      { "name": "Saket Raut", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/saket-raut-4ab408144/" },
+      { "name": "Vishakha Kotkar", "role": "Team Member", "photo": "", "linkedin": "https://www.linkedin.com/in/vishakha-kotkar-291b021b4/" }
+    ]
   }
 };

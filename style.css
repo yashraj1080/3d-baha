@@ -526,12 +526,17 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--f-head); line-height: 1.1; }
   backdrop-filter: blur(8px);
   z-index: 10;
   pointer-events: auto;
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+.year-selector::-webkit-scrollbar { display: none; }
 .year-btn {
   background: transparent;
   color: var(--grey-2);
   border: none;
-  padding: 8px 24px;
+  padding: 8px 16px;
   font-size: 0.85rem;
   font-weight: 600;
   font-family: var(--f-tech);
@@ -539,6 +544,8 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--f-head); line-height: 1.1; }
   cursor: pointer;
   transition: all 0.3s ease;
   letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .year-btn:hover {
   color: var(--white);
