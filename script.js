@@ -143,6 +143,7 @@
       '#sec-sponsors',
       '#sec-gallery',
       '#sec-contact',
+      '#sec-countdown',
     ].map(sel => document.querySelector(sel)).filter(Boolean);
     const dots = Array.from(document.querySelectorAll('.sd'));
 
@@ -560,12 +561,52 @@
     });
   }
 
+  // ── Countdown to BAJA SAE India 2027 ───────────────────────────────────────
+  function initCountdown() {
+    const daysEl  = document.getElementById('cd-days');
+    const hoursEl = document.getElementById('cd-hours');
+    const minsEl  = document.getElementById('cd-mins');
+    const secsEl  = document.getElementById('cd-secs');
+    if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+
+    // 5 January 2027, 00:00 IST
+    const target = new Date('2027-01-05T00:00:00+05:30').getTime();
+
+    function pad(n) {
+      return String(Math.max(0, n)).padStart(2, '0');
+    }
+
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minsEl.textContent = '00';
+        secsEl.textContent = '00';
+        return;
+      }
+      const totalSec = Math.floor(diff / 1000);
+      const days  = Math.floor(totalSec / 86400);
+      const hours = Math.floor((totalSec % 86400) / 3600);
+      const mins  = Math.floor((totalSec % 3600) / 60);
+      const secs  = totalSec % 60;
+      daysEl.textContent  = pad(days);
+      hoursEl.textContent = pad(hours);
+      minsEl.textContent  = pad(mins);
+      secsEl.textContent  = pad(secs);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  }
+
   function init() {
     canvas = document.getElementById('buggy-canvas');
     ctx    = canvas.getContext('2d');
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     initInteractions();
+    initCountdown();
 
     loadFrames(() => {
       const loader = document.getElementById('loader');

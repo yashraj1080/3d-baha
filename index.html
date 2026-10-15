@@ -88,6 +88,7 @@
     <div class="sd" data-scroll-to="#sec-sponsors" aria-label="Sponsors"></div>
     <div class="sd" data-scroll-to="#sec-gallery" aria-label="Gallery"></div>
     <div class="sd" data-scroll-to="#sec-contact" aria-label="Contact"></div>
+    <div class="sd" data-scroll-to="#sec-countdown" aria-label="Countdown"></div>
   </div>
 
   <!-- ══ MAIN SCROLL CONTAINER ══ -->
@@ -736,6 +737,66 @@
       </div>
     </section>
 
+    <!-- ─ S12: COUNTDOWN ─ -->
+    <section id="sec-countdown" class="content-section countdown-sec" aria-labelledby="countdown-title">
+      <div class="countdown-frame">
+        <span class="cd-corner cd-tl" aria-hidden="true"></span>
+        <span class="cd-corner cd-tr" aria-hidden="true"></span>
+        <span class="cd-corner cd-bl" aria-hidden="true"></span>
+        <span class="cd-corner cd-br" aria-hidden="true"></span>
+        <span class="cd-hash cd-hash-tl" aria-hidden="true"></span>
+        <span class="cd-hash cd-hash-br" aria-hidden="true"></span>
+        <span class="cd-dots cd-dots-tl" aria-hidden="true"></span>
+        <span class="cd-dots cd-dots-br" aria-hidden="true"></span>
+
+        <div class="cs-inner countdown-inner">
+          <p class="countdown-eyebrow reveal">
+            <span class="cd-marks" aria-hidden="true"></span>
+            BAJA SAE INDIA · 05 JAN 2027
+          </p>
+
+          <h2 id="countdown-title" class="countdown-title reveal-up">
+            <span class="cd-next">NEXT</span>
+            <span class="cd-mission">MISSION</span>
+          </h2>
+
+          <div class="countdown-timer reveal" style="--d:.15s" role="timer">
+            <div class="cd-unit">
+              <span class="cd-value" id="cd-days">00</span>
+              <span class="cd-label">Days</span>
+            </div>
+            <div class="cd-unit">
+              <span class="cd-value" id="cd-hours">00</span>
+              <span class="cd-label">Hours</span>
+            </div>
+            <div class="cd-unit">
+              <span class="cd-value" id="cd-mins">00</span>
+              <span class="cd-label">Minutes</span>
+            </div>
+            <div class="cd-unit">
+              <span class="cd-value" id="cd-secs">00</span>
+              <span class="cd-label">Seconds</span>
+            </div>
+          </div>
+
+          <p class="countdown-tagline reveal" style="--d:.25s">
+            <span class="cd-rule" aria-hidden="true"></span>
+            Engineered to endure. Built to conquer.
+            <span class="cd-marks" aria-hidden="true"></span>
+          </p>
+
+          <div class="countdown-cta reveal" style="--d:.35s">
+            <button class="btn-primary" data-scroll-to="#sec-team">Follow the Build →</button>
+          </div>
+
+          <p class="countdown-foot reveal" style="--d:.4s">
+            Power · Speed · Control · Endurance<br />
+            <span>BAJA SAE INDIA 2027</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Floating ambient elements -->
@@ -745,6 +806,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="team_data.js?v=5"></script>
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
